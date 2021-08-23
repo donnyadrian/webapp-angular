@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PerfilResponse } from 'src/app/models/perfil-response.model';
 
 @Component({
   selector: 'app-perfil-detalle',
@@ -7,7 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilDetalleComponent implements OnInit {
 
-  constructor() { }
+  @Input() perfil: PerfilResponse;
+  
+  constructor() { 
+    this.perfil = {
+      id: 0,
+      nombre: "",
+      descripcion: "",
+      empresa: {
+        id: 0,
+        nombre: ""
+      },
+      ambitosAsignados: [],
+      aplicacionesAsignadas: [],
+      estado: {
+        id: 0,
+        descripcion: ""
+      },
+      listaPerfilAplicacionRol: []
+    };
+  }
 
   ngOnInit(): void {
   }
