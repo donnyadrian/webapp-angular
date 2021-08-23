@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
 
@@ -7,7 +7,7 @@ import { Usuario } from 'src/app/models/usuario.model';
   templateUrl: './usuario-mant.component.html',
   styleUrls: ['./usuario-mant.component.scss']
 })
-export class UsuarioMantComponent implements OnInit {
+export class UsuarioMantComponent implements OnInit, OnDestroy {
 
   @Input() usuarioDialog: boolean = false;
   submitted: boolean = false;
@@ -54,6 +54,11 @@ export class UsuarioMantComponent implements OnInit {
       cambio: [false],
       estado: [this.usuario.estado.descripcion == 'ACTIVO'],
     });
+    console.log("ngOnInit");
+  }
+
+  ngOnDestroy(){
+    console.log("fin");
   }
 
   initForm() {
@@ -69,6 +74,7 @@ export class UsuarioMantComponent implements OnInit {
   }
 
   openNew() {
+    console.log("nuevo");
     this.usuario = {
       id: 0,
       idPersona: 0,
@@ -89,6 +95,7 @@ export class UsuarioMantComponent implements OnInit {
     this.submitted = false;
     this.usuarioDialog = true;
     this.initForm();
+    
   }
 
   hideDialog() {
@@ -99,4 +106,6 @@ export class UsuarioMantComponent implements OnInit {
   saveProduct() {
     this.submitted = true;
   }
+
+
 }

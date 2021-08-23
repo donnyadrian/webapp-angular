@@ -1,58 +1,11 @@
 <div class="card">
     <div class="card-body">
-        <div class="row g-3 needs-validation" novalidate>
-            <div class="col-md-3">
-              <label for="txtfechainicio" class="form-label">Fecha Inicio</label>
-              <input type="text" class="form-control" id="txtfechainicio" [(ngModel)]="milog.fechainicio" placeholder="{{hoy | date:'yyyy-MM-dd' }}">
-              <div class="invalid-feedback">
-                Fecha de inicio es obligatorio
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="txtfechafin" class="form-label">Fecha Fin</label>
-              <input type="text" class="form-control" id="txtfechafin" [(ngModel)]="milog.fechafin" placeholder="{{hoy | date:'yyyy-MM-dd' }}" >
-              <div class="valid-feedback">
-                Fecha de inicio es obligatorio
-              </div>
-            </div>
-            <div class="col-md-3">
-              <label for="txtusuario" class="form-label">Usuario</label>
-              <input type="text" class="form-control" id="txtusuario" [(ngModel)]="milog.usuarioejecucion">
-            </div>
-            <div class="col-md-3">
-              <label for="txtnombreapi" class="form-label">Nombre Api</label>
-              <input type="text" class="form-control" id="txtnombreapi" [(ngModel)]="milog.nombreapi">
-            </div>
-            <div class="col-12 text-end">
-              <button class="btn btn-primary" type="submit" (click)="buscarlogs()">Buscar</button>
-            </div>
-          </div>
+      <app-auditoria-filtros (buscarlogsEvent)="buscarlogs($event)"></app-auditoria-filtros>
     </div>
 </div>
 <div class="card mt-2">
     <div class="card-body">
-        <table class="table table-bordered border-secondary table-striped table-hover rounded">
-            <thead>
-                <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">Clase</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Usuario</th>
-                  <th scope="col">Api</th>
-                  <th scope="col">Mensaje</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let log of logs.logs">
-                  <th scope="row">{{log.id}}</th>
-                  <td>{{log.clase}}</td>
-                  <td>{{log.fecharegistro}}</td>
-                  <td>{{log.usuarioejecucion}}</td>
-                  <td>{{log.nombreapi}}</td>
-                  <td>{{log.mensaje | textoLongitud:100 }}</td>
-                </tr>
-              </tbody>
-          </table>
+      <app-errores-lista [logs]="logs"></app-errores-lista>
     </div>
 </div>
   

@@ -12,7 +12,7 @@ export class AuditoriaErroresComponent implements OnInit {
 
   milog: LogRequest;
   logs: LogsResponse;
-  hoy: Date = new Date();
+  
 
   constructor(private logService: LogService) { 
     this.milog = {
@@ -41,7 +41,8 @@ export class AuditoriaErroresComponent implements OnInit {
     });
   }
 
-  buscarlogs(){
+  buscarlogs(milog: LogRequest){
+    this.milog = milog;
     console.log(this.milog);
     this.getLogs();
   }

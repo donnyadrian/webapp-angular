@@ -69,7 +69,6 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     const codigo = this.activateroute.snapshot.paramMap.get('id');
-    console.log(codigo);
     this.getPerfil(Number(codigo));
   }
 
@@ -79,9 +78,6 @@ export class PerfilComponent implements OnInit {
       if(this.perfil.aplicacionesAsignadas.length > 0){
         this.aplicacionService.getAplicacion(this.perfil.aplicacionesAsignadas[0]).subscribe(resp => {
           this.aplicacion = resp;
-          console.log(this.aplicacion);
-          //this.listaUsuarios = resp.data;
-          // console.log(this.listaUsuarios)
         });
       }
     });
