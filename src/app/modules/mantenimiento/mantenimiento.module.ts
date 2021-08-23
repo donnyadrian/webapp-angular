@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MantenimientoRoutingModule } from './mantenimiento-routing.module';
 import { UsuarioMantComponent } from './components/usuario-mant/usuario-mant.component';
@@ -10,6 +12,13 @@ import { PerfilDetalleComponent } from './components/perfil-detalle/perfil-detal
 import { AplicacionDetalleComponent } from './components/aplicacion-detalle/aplicacion-detalle.component';
 import { CardComponent } from './components/card/card.component';
 
+import {ToastModule} from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {CheckboxModule} from 'primeng/checkbox';
+import {DialogModule} from 'primeng/dialog';
+import {ToolbarModule} from 'primeng/toolbar';
+import {TableModule} from 'primeng/table';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +32,18 @@ import { CardComponent } from './components/card/card.component';
   ],
   imports: [
     CommonModule,
-    MantenimientoRoutingModule
+    MantenimientoRoutingModule,
+    ReactiveFormsModule,
+    ToastModule,
+    ConfirmDialogModule,
+    CheckboxModule,
+    DialogModule,
+    ToolbarModule,
+    TableModule,
+    BrowserModule,
+    BrowserAnimationsModule
+  ],
+  providers: [
   ]
 })
 export class MantenimientoModule { }

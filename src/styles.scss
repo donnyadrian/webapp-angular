@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+.bg-1{
+    background-color: #ffa13e;;
+}
+.border-1 {
+    border: 1px solid #ffbf86;
+    border-radius: 5px;
+}
+.minheight {
+    min-height: 400px;
+}
