@@ -6,24 +6,7 @@
     </div>
     <div class="col-6">
         <app-card titulo="Aplicaciones Asignadas">
-            <app-aplicacion-detalle></app-aplicacion-detalle>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="row">
-                                <div class="col-3">ID:</div>
-                                <div class="col-9">{{aplicacion.id}}</div>
-                                <div class="col-3">Nombre:</div>
-                                <div class="col-9">{{aplicacion.nombre}}</div>
-                                <div class="col-3">Url:</div>
-                                <div class="col-9">{{aplicacion.url}}</div>
-                            </div>
-                        </div>
-                        <div class="col-4"><img src="{{aplicacion.imagen}}" alt="" height="100"></div>
-                    </div>
-                </div>
-            </div>
+            <app-aplicacion-detalle [aplicacion]="aplicacion"></app-aplicacion-detalle>
         </app-card>
     </div>
 </div>
