@@ -4,49 +4,11 @@
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
         </ng-template>
-
         <ng-template pTemplate="right">
             <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
         </ng-template>
     </p-toolbar>
-
-    <p-table #dt [value]="usuarios" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
-         [rowHover]="true" dataKey="id"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                <h5 class="p-m-0">Mantenimiento de Usuarios</h5>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
-                <th pSortableColumn="nombre">Nombres <p-sortIcon field="nombre"></p-sortIcon></th>
-                <th pSortableColumn="login">Login <p-sortIcon field="login"></p-sortIcon></th>
-                <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-                <th pSortableColumn="esAd">Status <p-sortIcon field="estado.descripcion"></p-sortIcon></th>
-                <th>Acciones</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-usuario>
-            <tr>
-                <td>{{usuario.id}}</td>
-                <td>{{usuario.nombre}}</td>
-                <td>{{usuario.login}}</td>
-                <td>{{usuario.email}}</td>
-                <td>{{usuario.estado.descripcion}}</td>
-                <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success m-2" (click)="editUsuario(usuario)"></button>
-                    <button pButton pRipple icon="pi pi-link" class="p-button-rounded p-button-warning m-2" routerLink="/perfil/{{usuario.id}}"></button>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="p-d-flex p-ai-center p-jc-between">
-                Hay {{usuarios ? usuarios.length : 0 }} usuarios.
-            </div>
-        </ng-template>
-    </p-table>
+    <app-usuario-lista [usuarios]="usuarios" (editUsuarioEvent)="editUsuario($event)"></app-usuario-lista>
 </div>
 
 <p-dialog [(visible)]="usuarioDialog" [style]="{width: '500px'}" header="Usuario" [modal]="true" styleClass="p-fluid">

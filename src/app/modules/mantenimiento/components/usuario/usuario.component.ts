@@ -119,35 +119,6 @@ export class UsuarioComponent implements OnInit {
     //this.formUser.controls. .setValue(this.usuario);
   }
 
-  goPerfil(usuario: Usuario) {
-    this.confirmationService.confirm({
-        message: 'Are you sure you want to delete ' + usuario.nombre + '?',
-        header: 'Confirm',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.usuarios = this.usuarios.filter(val => val.id !== usuario.id);
-            this.usuario = {
-              id: 0,
-              idPersona: 0,
-              nombre: "",
-              login: "",
-              email: "",
-              esAd: 0,
-              fechaUltimaSesion: "",
-              estado: {
-                id:0,
-                descripcion:""
-              },
-              perfil: {
-                id: 0,
-                nombre: ""
-              }
-            };
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-        }
-    });
-  }
-
   hideDialog() {
     this.usuarioDialog = false;
     this.submitted = false;
@@ -155,22 +126,5 @@ export class UsuarioComponent implements OnInit {
 
   saveProduct() {
     this.submitted = true;
-
-    /*if (this.usuario.name.trim()) {
-        if (this.usuario.id) {
-            this.usuarios[this.findIndexById(this.usuario.id)] = this.usuario;                
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
-        }
-        else {
-            this.usuario.id = this.createId();
-            this.usuario.image = 'product-placeholder.svg';
-            this.usuarios.push(this.usuario);
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
-        }
-
-        this.usuarios = [...this.usuarios];
-        this.productDialog = false;
-        this.usuario = {};
-    }*/
   }
 }
