@@ -12,53 +12,7 @@
 </div>
 
 <p-dialog [(visible)]="usuarioDialog" [style]="{width: '500px'}" header="Usuario" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <form [formGroup]="formUser">
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label for="txtname" class="form-label">Nombres y Apellidos</label>
-                    <input type="text" class="form-control" id="txtname" formControlName="nombres" autofocus>
-                    <small class="p-error" *ngIf="submitted && !usuario.nombre">Nombre es obligatorio.</small>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="txtlogin" class="form-label">Login</label>
-                    <input type="text" class="form-control" id="txtlogin" formControlName="login">
-                    <small class="p-error" *ngIf="submitted && !usuario.login">Login es obligatorio.</small>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label for="txtemail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="txtemail" formControlName="email">
-                    <small class="p-error" *ngIf="submitted && !usuario.email">Email es obligatorio.</small>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="txtpassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="txtpassword" formControlName="password">
-                    <small class="p-error" *ngIf="submitted && !usuario.email">Contraseña es obligatorio.</small>
-                </div>
-            </div>
-            <div class="row">
-                <div class="mb-3 form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="chkdominio" formControlName="dominio">
-                    <label class="form-check-label" for="chkdominio">No es dominio</label>
-                </div>
-                <div class="mb-3 form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="chkcambio" formControlName="cambio">
-                    <label class="form-check-label" for="chkcambio">Cambio Contraseña</label>
-                </div>
-                <div class="mb-3 form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="chkestado" formControlName="estado">
-                    <label class="form-check-label" for="chkestado">Estado</label>
-                </div>
-            </div>
-        </form>
-    </ng-template>
-    
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-    </ng-template>
+    <app-usuario-mant *ngIf="usuarioDialog" [usuario]="usuario" (closeDialogEvent)="closeDialog($event)"></app-usuario-mant>
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

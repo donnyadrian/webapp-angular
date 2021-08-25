@@ -1,49 +1,98 @@
-<p-dialog [(visible)]="usuarioDialog" [style]="{width: '500px'}" header="Usuario" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <form [formGroup]="formUser">
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label for="txtname" class="form-label">Nombres y Apellidos</label>
-                    <input type="text" class="form-control" id="txtname" formControlName="nombres" autofocus>
-                    <small class="p-error" *ngIf="submitted && !usuario.nombre">Nombre es obligatorio.</small>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="txtlogin" class="form-label">Login</label>
-                    <input type="text" class="form-control" id="txtlogin" formControlName="login">
-                    <small class="p-error" *ngIf="submitted && !usuario.login">Login es obligatorio.</small>
-                </div>
+<div class="content">
+    <form [formGroup]="formUser">
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label for="txtname" class="form-label">Nombres y Apellidos</label>
+                <input 
+                    type="text" class="form-control" id="txtname" formControlName="nombres" autofocus
+                    [ngClass]="{
+                        'is-invalid': formUser.controls.nombres.invalid && (formUser.controls.nombres.touched || submitted),
+                        'is-valid': formUser.controls.nombres.valid
+                      }"
+                />
+                <small class="p-error" *ngIf="formUser.controls.nombres.invalid && (formUser.controls.nombres.touched || submitted)">
+                    <div *ngIf="formUser.controls.nombres.errors?.required">
+                        Nombre es obligatorio.
+                    </div>
+                    <div *ngIf="formUser.controls.nombres.errors?.minlength">
+                        Nombre debe tener al menos 3 caracteres.
+                    </div>
+                </small>
             </div>
-            <div class="row">
-                <div class="mb-3 col-6">
-                    <label for="txtemail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="txtemail" formControlName="email">
-                    <small class="p-error" *ngIf="submitted && !usuario.email">Email es obligatorio.</small>
-                </div>
-                <div class="mb-3 col-6">
-                    <label for="txtpassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="txtpassword" formControlName="password">
-                    <small class="p-error" *ngIf="submitted && !usuario.email">Contraseña es obligatorio.</small>
-                </div>
+            <div class="mb-3 col-6">
+                <label for="txtlogin" class="form-label">Login</label>
+                <input 
+                    type="text" class="form-control" id="txtlogin" formControlName="login" 
+                    [ngClass]="{
+                        'is-invalid': formUser.controls.login.invalid && (formUser.controls.login.touched || submitted),
+                        'is-valid': formUser.controls.login.valid
+                      }"
+                />
+                <small class="p-error" *ngIf="formUser.controls.login.invalid && (formUser.controls.login.touched || submitted)">
+                    <div *ngIf="formUser.controls.login.errors?.required">
+                        Login es obligatorio.
+                    </div>
+                    <div *ngIf="formUser.controls.login.errors?.minlength">
+                        Login debe tener al menos 4 caracteres.
+                    </div>
+                </small>
             </div>
-            <div class="row">
-                <div class="mb-3 form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="chkdominio" formControlName="dominio">
-                    <label class="form-check-label" for="chkdominio">No es dominio</label>
-                </div>
-                <div class="mb-3 form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="chkcambio" formControlName="cambio">
-                    <label class="form-check-label" for="chkcambio">Cambio Contraseña</label>
-                </div>
-                <div class="mb-3 form-check col-4">
-                    <input type="checkbox" class="form-check-input" id="chkestado" formControlName="estado">
-                    <label class="form-check-label" for="chkestado">Estado</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label for="txtemail" class="form-label">Email</label>
+                <input 
+                    type="email" class="form-control" id="txtemail" formControlName="email"
+                    [ngClass]="{
+                        'is-invalid': formUser.controls.email.invalid && (formUser.controls.email.touched || submitted),
+                        'is-valid': formUser.controls.email.valid
+                      }"
+                />
+                <small class="p-error" *ngIf="formUser.controls.email.invalid && (formUser.controls.email.touched || submitted)">
+                    <div *ngIf="formUser.controls.email.errors?.required">
+                        Email es obligatorio.
+                    </div>
+                    <div *ngIf="formUser.controls.email.errors?.email">
+                        Email no valido.
+                    </div>
+                </small>
             </div>
-        </form>
-    </ng-template>
-    
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-    </ng-template>
-</p-dialog>
+            <div class="mb-3 col-6">
+                <label for="txtpassword" class="form-label">Contraseña</label>
+                <input 
+                    type="password" class="form-control" id="txtpassword" formControlName="password"
+                    [ngClass]="{
+                        'is-invalid': formUser.controls.password.invalid && (formUser.controls.password.touched || submitted),
+                        'is-valid': formUser.controls.password.valid
+                      }"
+                />
+                <small class="p-error" *ngIf="formUser.controls.password.invalid && (formUser.controls.password.touched || submitted)">
+                    <div *ngIf="formUser.controls.password.errors?.required">
+                        Contraseña es obligatorio.
+                    </div>
+                </small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 form-check col-4">
+                <input type="checkbox" class="form-check-input" id="chkdominio" formControlName="dominio">
+                <label class="form-check-label" for="chkdominio">No es dominio</label>
+            </div>
+            <div class="mb-3 form-check col-4">
+                <input type="checkbox" class="form-check-input" id="chkcambio" formControlName="cambio">
+                <label class="form-check-label" for="chkcambio">Cambio Contraseña</label>
+            </div>
+            <div class="mb-3 form-check col-4">
+                <input type="checkbox" class="form-check-input" id="chkestado" formControlName="estado">
+                <label class="form-check-label" for="chkestado">Estado</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-end">
+                <button type="button" class="btn btn-outline-secondary m-2" (click)="hideDialog()"><i class="pi pi-times"></i>Cancelar</button>
+                <button type="button" class="btn btn-outline-primary" (click)="saveProduct()"><i class="pi pi-check"></i> Guardar</button>
+            </div>
+        </div>
+        
+    </form>
+</div>
